@@ -7,8 +7,13 @@
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
+    "deploy": "wrangler deploy",
+    "cf:dev": "wrangler dev",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -25,6 +30,7 @@
     "@types/react-dom": "^19.3.0",
     "esbuild": "^0.28.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "wrangler": "^4.147.0"
   }
 }

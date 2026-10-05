@@ -1,0 +1,15 @@
+{
+  // Cloudflare Workers deployment — static-assets only, no Worker script.
+  // `npm run build` produces ./dist, and `npx wrangler deploy` uploads it.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ferga-landing",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    // Vite build output
+    "directory": "./dist",
+    // Real files always win, so the QR target is never swallowed by the SPA
+    // fallback. Default html_handling also makes /get resolve to /get.html,
+    // so both work in production.
+    "not_found_handling": "single-page-application"
+  }
+}
