@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  [dir="rtl"] {
+    --font-heading: "Vazirmatn", "Noto Sans Arabic", "Readex Pro", "Cairo", system-ui, sans-serif;
+    --font-body: "Vazirmatn", "Noto Sans Arabic", "Readex Pro", "Cairo", system-ui, sans-serif;
+    --font-display: "Vazirmatn", "Noto Sans Arabic", "Readex Pro", "Cairo", system-ui, sans-serif;
+  }
+
+  html[lang="ckb"] {
+    --font-heading: "Vazirmatn", "Noto Sans Arabic", system-ui, sans-serif;
+    --font-body: "Vazirmatn", "Noto Sans Arabic", system-ui, sans-serif;
+    --font-display: "Vazirmatn", "Noto Sans Arabic", system-ui, sans-serif;
+  }
+
+  html[lang="ar"] {
+    --font-heading: "Cairo", "Noto Sans Arabic", "Vazirmatn", system-ui, sans-serif;
+    --font-body: "Cairo", "Noto Sans Arabic", "Vazirmatn", system-ui, sans-serif;
+    --font-display: "Cairo", "Noto Sans Arabic", "Vazirmatn", system-ui, sans-serif;
+  }
+
+  /* Prevent negative tracking on RTL scripts that breaks Kurdish and Arabic ligatures */
+  [dir="rtl"] .tracking-tighter,
+  [dir="rtl"] .tracking-tight {
+    letter-spacing: normal !important;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    line-height: 1.25 !important;
+    word-spacing: normal !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #1D2630;
+    font-family: var(--font-body);
+  }
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
