@@ -41,12 +41,31 @@
 
   html {
     scroll-behavior: smooth;
+    /* Keep iOS from inflating text in landscape */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
     background-color: #ffffff;
     color: #1D2630;
     font-family: var(--font-body);
+    /* No sideways scrolling on phones */
+    overflow-x: hidden;
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+  }
+
+  /* Bigger, thumb-friendly tap targets on touch devices */
+  @media (pointer: coarse) {
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 }
 
@@ -56,4 +75,150 @@
 
 .font-mono {
   font-family: var(--font-mono);
+}
+
+/* ------------------------------------------------------------------
+   Glass + reflected-colour system (App Store–inspired)
+
+   Everything here lives in @layer components so Tailwind utilities
+   (bg-*, border-*, shadow-*, rounded-*) can still override it.
+   ------------------------------------------------------------------ */
+@layer components {
+  /* Frosted panel — cards, tiles, bars */
+  .glass {
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.78) 0%,
+      rgba(255, 255, 255, 0.44) 100%
+    );
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.35),
+      0 18px 50px -26px rgba(29, 38, 48, 0.35);
+  }
+
+  /* Smaller frosted element — chips, pills, badges */
+  .glass-chip {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px) saturate(170%);
+    -webkit-backdrop-filter: blur(14px) saturate(170%);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 8px 22px -14px rgba(29, 38, 48, 0.4);
+  }
+
+  /* Frosted bar that floats over content (nav, dock) */
+  .glass-bar {
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(20px) saturate(190%);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 12px 40px -22px rgba(29, 38, 48, 0.4);
+  }
+
+  /* Dark frosted surface (footer / dark cards) */
+  .glass-dark {
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+
+  /* Soft blurred colour blob — the "reflected colour" atmosphere */
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(64px);
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .blob-strong {
+    filter: blur(48px);
+  }
+
+  /* Halo behind the app icon: the icon's own colours, blurred + drifting */
+  .icon-halo {
+    position: absolute;
+    inset: -13%;
+    border-radius: 9999px;
+    filter: blur(34px);
+    opacity: 0.62;
+    pointer-events: none;
+    background: conic-gradient(
+      from 140deg,
+      #ffb22c,
+      #ff8c19,
+      #ff6b35,
+      #ffd454,
+      #6fa8dc,
+      #ffb22c
+    );
+    animation: halo-drift 20s ease-in-out infinite;
+  }
+
+  /* Coloured light spilling under a CTA, like a screen reflection */
+  .cta-glow {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 16px 40px -18px rgba(255, 140, 25, 0.55);
+  }
+}
+
+@keyframes halo-drift {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.09);
+  }
+}
+
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.06);
+  }
+}
+
+.blob-anim {
+  animation: blob-float 16s ease-in-out infinite;
+}
+
+.blob-anim-slow {
+  animation: blob-float 24s ease-in-out infinite reverse;
+}
+
+/* Graceful fallback where backdrop-filter is unsupported */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-chip {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .glass-bar {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-halo,
+  .blob-anim,
+  .blob-anim-slow {
+    animation: none;
+  }
 }

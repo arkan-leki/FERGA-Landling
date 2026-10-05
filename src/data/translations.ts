@@ -1,29 +1,32 @@
-// Extracted and refined for https://get-ferga-now.base44.app/
+/**
+ * FERGA landing copy — EN / AR / CKB (Sorani).
+ *
+ * Content is grounded in the shipped FERGA app, not invented:
+ *  · hero + features  → the live App Store description (app id 6808258219)
+ *  · subjects         → `category_groups` in fergapp/supabase/seed.sql (13 fields,
+ *                       label / label_ar / label_ku taken verbatim from the database)
+ *  · store links      → com.ferga.mobile (Play) · id6808258219 (App Store)
+ *  · web app          → https://ferga.expo.app
+ */
 export interface TranslationSchema {
   nav: {
     download: string;
   };
   hero: {
-    tagline: string;
-    h1a: string;
-    h1b: string;
+    appName: string;
+    badge: string;
+    subtitle: string;
     subhead: string;
-    builtBy: string;
-  };
-  screenshots: {
-    label: string;
-    title: string;
-    desc: string;
-    screens: Array<{
-      title: string;
-      caption: string;
-    }>;
+    free: string;
+    category: string;
+    languages: string;
   };
   store: {
     getItOn: string;
-    googlePlay: string;
     downloadOnThe: string;
+    googlePlay: string;
     appStore: string;
+    comingSoon: string;
   };
   categories: {
     label: string;
@@ -46,14 +49,19 @@ export interface TranslationSchema {
     h1b: string;
     desc: string;
     scan: string;
+    scanHint: string;
+    available: string;
     publishedBy: string;
   };
   footer: {
     tagline: string;
     download: string;
     company: string;
+    legal: string;
     about: string;
-    contact: string;
+    support: string;
+    privacy: string;
+    dataDeletion: string;
     subjects: string;
     rights: string;
   };
@@ -61,265 +69,267 @@ export interface TranslationSchema {
 
 export const TRANSLATIONS: Record<string, TranslationSchema> = {
   en: {
-    nav: { download: 'Download Ferga' },
+    nav: { download: 'Get FERGA' },
     hero: {
-      tagline: 'Teaching and learning',
-      h1a: 'Learn anything.',
-      h1b: 'Teach anyone.',
-      subhead: 'Ferga brings every subject together — from languages and school to music, fitness, and life skills — so curious learners and great teachers can find each other in one app.',
-      builtBy: 'Built & published by ferkar.co',
-    },
-    screenshots: {
-      label: 'App Screenshots',
-      title: 'A glimpse inside Ferga.',
-      desc: 'Real screens from our mobile app designed for students, teachers, and centers across Kurdistan and Iraq.',
-      screens: [
-        { title: 'Home & Discovery', caption: 'Find top educators, stats & 14 study categories' },
-        { title: 'Nearby Centers (📍)', caption: 'Locate verified tutors & institutions near you' },
-        { title: 'Teachers Directory', caption: 'Browse expert profiles, ratings & verified reviews' },
-        { title: 'Courses & Skills', caption: 'Explore comprehensive courses from code to arts' },
-      ],
+      appName: 'Ferga — Teaching & Learning',
+      badge: "Kurdistan's education marketplace",
+      subtitle: 'Find tutors and courses near you',
+      subhead:
+        'FERGA is the education marketplace for Kurdistan — discover, compare and book the best private tutors, schools and training centers. Learn languages, programming, business, arts, music and more — online or in person.',
+      free: 'Free',
+      category: 'Education',
+      languages: 'کوردی · العربية · English',
     },
     store: {
       getItOn: 'Get it on',
-      googlePlay: 'Google Play',
       downloadOnThe: 'Download on the',
+      googlePlay: 'Google Play',
       appStore: 'App Store',
+      comingSoon: 'Coming soon',
     },
     categories: {
-      label: '01 — What you can learn',
-      title: 'One app. Every subject you care about.',
-      desc: 'From school basics to professional skills, Ferga covers 14 fields of study — pick one and start, or teach what you know.',
+      label: '01 — Browse by subject',
+      title: 'From school subjects to professional skills.',
+      desc:
+        '13 fields of study, taught by tutors, schools and training centers across Kurdistan — online or in person.',
       items: {
+        'school-academic': 'School & Academic',
         languages: 'Languages',
-        school: 'School Subjects',
-        university: 'University Subjects',
-        technology: 'Technology & IT',
-        business: 'Business & Management',
-        trades: 'Trades & Technical Skills',
-        arts: 'Arts & Design',
-        music: 'Music & Audio',
-        fitness: 'Fitness & Sports',
-        career: 'Career Development',
-        exam: 'Exam Preparation',
-        life: 'Life Skills',
-        religious: 'Religious Education',
-        personal: 'Personal Development',
+        'technology-it': 'Technology & IT',
+        professional: 'Professional Skills',
+        'business-finance': 'Business & Finance',
+        'health-wellness': 'Health & Wellness',
+        engineering: 'Engineering',
+        'arts-creativity': 'Arts & Creativity',
+        lifestyle: 'Lifestyle & Hobbies',
+        'islamic-studies': 'Islamic Studies',
+        vocational: 'Vocational Trades',
+        'creative-media': 'Creative & Media Jobs',
+        'legal-admin': 'Legal, Admin & Finance',
       },
     },
     features: {
-      label: '02 — Why Ferga',
-      title: 'Teaching and learning, made simple.',
-      desc: 'Ferga turns curiosity into progress — and skill into opportunity.',
+      label: '02 — How it works',
+      title: 'Discover, compare, then book.',
+      desc: 'Everything you need to find the right teacher — in one app.',
       items: [
         {
-          title: 'Any subject, any level',
-          body: '14 fields of study — from languages and school subjects to trades, music, and life skills — all in one place.',
+          title: 'Tutors, schools & centers',
+          body: 'Explore detailed profiles with photos, subjects, experience, ratings and hourly rates — plus featured courses.',
         },
         {
-          title: 'Learn & teach',
-          body: 'Join as a learner to grow, or as a teacher to share your skills and reach students who need them.',
+          title: 'Chat & book directly',
+          body: 'Message the instructor who fits you and book lessons from inside the app — online or in person.',
         },
         {
-          title: 'Track your progress',
-          body: 'Follow every milestone, see how far you\'ve come, and stay motivated with clear goals.',
+          title: 'Compare prices & reviews',
+          body: 'Read genuine student reviews, then compare pricing, ratings and availability before you commit.',
         },
         {
-          title: 'Made for everyone',
-          body: 'Simple, friendly, and built so anyone — student, teacher, or parent — can start in seconds.',
+          title: 'Built for Kurdistan',
+          body: 'Available in Kurdish, Arabic and English, with trusted partners in Erbil, Sulaymaniyah, Duhok and beyond.',
         },
       ],
     },
     final: {
-      label: '03 — Install',
+      label: '03 — Get the app',
       h1a: 'Start learning',
       h1b: 'today.',
-      desc: 'Free to download. Available now on Google Play and the App Store. Scan the code to install Ferga instantly on your phone.',
+      desc:
+        'Free to download. Point your phone camera at the code — it opens the right store for your device.',
       scan: 'Scan to download',
+      scanHint: 'Opens the App Store or Google Play',
+      available: 'Available now on the App Store.',
       publishedBy: 'Published by ferkar.co',
     },
     footer: {
-      tagline: 'Teaching and learning. Built and published by ferkar.co — one app for every subject.',
+      tagline:
+        'FERGA is the education marketplace for Kurdistan — tutors, schools, training centers and courses in one app.',
       download: 'Download',
       company: 'Company',
+      legal: 'Legal',
       about: 'About',
-      contact: 'Contact',
+      support: 'Support',
+      privacy: 'Privacy policy',
+      dataDeletion: 'Data deletion',
       subjects: 'Subjects',
       rights: 'All rights reserved',
     },
   },
+
   ar: {
-    nav: { download: 'تحميل فِرگا' },
+    nav: { download: 'حمّل التطبيق' },
     hero: {
-      tagline: 'التدريس والتعلّم',
-      h1a: 'تعلّم أي شيء.',
-      h1b: 'علّم أي شخص.',
-      subhead: 'يجمع فِرگا كل المواد معًا — من اللغات والمناهج المدرسية إلى البرمجة والموسيقى ومهارات الحياة — ليجد المتعلّمون والمعلّمون بعضهم البعض في تطبيق واحد.',
-      builtBy: 'بُني ونُشر بواسطة ferkar.co',
-    },
-    screenshots: {
-      label: 'لقطات من التطبيق',
-      title: 'نظرة داخل تطبيق فِرگا.',
-      desc: 'شاشات حقيقية من التطبيق مصممة لربط الطلاب بأفضل المعلمين والمراكز التعليمية في كردستان والعراق.',
-      screens: [
-        { title: 'الرئيسية والاستكشاف', caption: 'البحث عن أفضل المعلمين والمراكز وأحدث الدورات' },
-        { title: 'القريب منك (📍)', caption: 'استكشاف المعلمين والمؤسسات المعتمدة حسب المسافة' },
-        { title: 'دليل المعلمين', caption: 'ملفات المعلمين المعتمدين مع التقييمات والحصص الحضورية وعن بُعد' },
-        { title: 'الدورات والامتحانات', caption: 'دورات البرمجة واللغات ونماذج امتحانات السنوات السابقة' },
-      ],
+      appName: 'منصة — التعليم والتدريس',
+      badge: 'سوق التعليم في كردستان',
+      subtitle: 'اعثر على معلّمين ودورات قريبة منك',
+      subhead:
+        'منصة التعليم في كردستان — اكتشف وقارن واحجز أفضل المعلمين الخاصين والمدارس ومراكز التدريب. تعلّم اللغات والبرمجة والأعمال والفنون والموسيقى والمزيد — عبر الإنترنت أو حضوريًا.',
+      free: 'مجاني',
+      category: 'التعليم',
+      languages: 'کوردی · العربية · English',
     },
     store: {
       getItOn: 'متاح على',
+      downloadOnThe: 'حمّله من',
       googlePlay: 'Google Play',
-      downloadOnThe: 'تحميل من',
       appStore: 'App Store',
+      comingSoon: 'قريبًا',
     },
     categories: {
-      label: '٠١ — ما يمكنك تعلّمه',
-      title: 'تطبيق واحد. كل مادة تهمّك.',
-      desc: 'من أساسيات المدرسة إلى المهارات المهنية، يغطي فِرگا 14 مجالًا للدراسة — اختر مجالك وابدأ، أو شارك خبرتك وعلّم ما تتقنه.',
+      label: '٠١ — تصفّح حسب المادة',
+      title: 'من المواد الدراسية إلى المهارات المهنية.',
+      desc:
+        '١٣ مجالًا للدراسة يدرّسها معلمون ومدارس ومراكز تدريب في كردستان — عبر الإنترنت أو حضوريًا.',
       items: {
+        'school-academic': 'المدرسة والأكاديمية',
         languages: 'اللغات',
-        school: 'المناهج المدرسية',
-        university: 'المواد الجامعية',
-        technology: 'التكنولوجيا والبرمجة',
-        business: 'الأعمال والإدارة',
-        trades: 'المهن والمهارات التقنية',
-        arts: 'الفنون والتصميم',
-        music: 'الموسيقى والصوتيات',
-        fitness: 'اللياقة والرياضة',
-        career: 'التطوير المهني',
-        exam: 'التحضير للامتحانات الوزارية',
-        life: 'مهارات الحياة اليومية',
-        religious: 'التعليم الديني',
-        personal: 'التطوير الشخصي',
+        'technology-it': 'التكنولوجيا وتقنية المعلومات',
+        professional: 'المهارات المهنية',
+        'business-finance': 'الأعمال والمالية',
+        'health-wellness': 'الصحة والعافية',
+        engineering: 'الهندسة',
+        'arts-creativity': 'الفنون والإبداع',
+        lifestyle: 'نمط الحياة والهوايات',
+        'islamic-studies': 'الدراسات الإسلامية',
+        vocational: 'الحرف المهنية',
+        'creative-media': 'الوظائف الإبداعية والإعلامية',
+        'legal-admin': 'القانون والإدارة والمالية',
       },
     },
     features: {
-      label: '٠٢ — لماذا فِرگا',
-      title: 'التدريس والتعلّم، ببساطة.',
-      desc: 'يحوّل فِرگا الفضول إلى تقدّم — والمهارة إلى فرصة حقيقية.',
+      label: '٠٢ — كيف يعمل التطبيق',
+      title: 'اكتشف، قارن، ثم احجز.',
+      desc: 'كل ما تحتاجه للعثور على المعلّم المناسب — في تطبيق واحد.',
       items: [
         {
-          title: 'أي مادة، أي مستوى',
-          body: '١٤ مجالًا للدراسة — من اللغات والمواد المدرسية إلى المهن والبرمجة ومهارات الحياة — كلها في مكان واحد.',
+          title: 'معلمون ومدارس ومراكز',
+          body: 'تصفّح ملفات مفصلة مع الصور والمواد والخبرة والتقييمات والأجر بالساعة — إضافة إلى الدورات المميزة.',
         },
         {
-          title: 'تعلّم وعلّم',
-          body: 'انضم كمتعلّم لتتطوّر، أو كمعلّم لتشارك مهاراتك وتصل إلى الطلاب الذين يحتاجونها.',
+          title: 'تواصل واحجز مباشرة',
+          body: 'راسل المعلّم المناسب لك واحجز الدروس من داخل التطبيق — عبر الإنترنت أو حضوريًا.',
         },
         {
-          title: 'تابع تقدّمك',
-          body: 'تابع كل إنجاز، وانظر كم قطعت من شوط، وابقَ متحمّسًا بأهداف واضحة.',
+          title: 'قارن الأسعار والمراجعات',
+          body: 'اقرأ مراجعات الطلاب الحقيقية، ثم قارن الأسعار والتقييمات والتوفر قبل أن تقرر.',
         },
         {
-          title: 'صُمّم للجميع',
-          body: 'بسيط وودود، ومصمّم بحيث يستطيع أي شخص — طالب أو معلّم أو ولي أمر — البدء في ثوانٍ معدودة.',
+          title: 'مصمّم لكردستان',
+          body: 'متاح بالكردية والعربية والإنجليزية، مع شركاء موثوقين في أربيل والسليمانية ودهوك وما بعدها.',
         },
       ],
     },
     final: {
-      label: '٠٣ — التثبيت',
+      label: '٠٣ — حمّل التطبيق',
       h1a: 'ابدأ التعلّم',
       h1b: 'اليوم.',
-      desc: 'التحميل مجاني بالكامل. متاح الآن على Google Play و App Store. امسح الرمز لتثبيت فِرگا فورًا على هاتفك.',
+      desc:
+        'التحميل مجاني. وجّه كاميرا هاتفك نحو الرمز — سيفتح المتجر المناسب لجهازك.',
       scan: 'امسح للتحميل',
+      scanHint: 'يفتح App Store أو Google Play',
+      available: 'متاح الآن على App Store.',
       publishedBy: 'نُشر بواسطة ferkar.co',
     },
     footer: {
-      tagline: 'التدريس والتعلّم. بُني ونُشر بواسطة ferkar.co — تطبيق واحد لكل مادة.',
-      download: 'التحميل',
+      tagline:
+        'منصة التعليم في كردستان — معلمون ومدارس ومراكز تدريب ودورات في تطبيق واحد.',
+      download: 'تحميل',
       company: 'الشركة',
-      about: 'حول',
-      contact: 'تواصل معنا',
-      subjects: 'المواد الدراسية',
+      legal: 'قانوني',
+      about: 'حول التطبيق',
+      support: 'الدعم',
+      privacy: 'سياسة الخصوصية',
+      dataDeletion: 'حذف البيانات',
+      subjects: 'المواد',
       rights: 'جميع الحقوق محفوظة',
     },
   },
+
   ckb: {
-    nav: { download: 'داگرتنی فێرگا' },
+    nav: { download: 'فێرگە دابگرە' },
     hero: {
-      tagline: 'فێرکردن و فێربوون',
-      h1a: 'هەرشتێک فێربە.',
-      h1b: 'هەرکەسێک فێر بکە.',
-      subhead: 'فێرگا هەموو بوارەکان لە یەک ئەپدا کۆدەکاتەوە — لە زمان و قوتابخانەوە تا پرۆگرامینگ، میوزیک و وەرزش — تا فێرخوازە زیرەکەکان و مامۆستایانی بەئەزموون لە یەک ئەپدا یەکتر بدۆزنەوە.',
-      builtBy: 'دروستکراوە و بڵاوکراوەتەوە لەلایەن ferkar.co',
-    },
-    screenshots: {
-      label: 'دیمەنەکانی ئەپ',
-      title: 'چاوێک لە ناو ئەپی فێرگا.',
-      desc: 'دیمەنی ڕاستەقینەی ناو ئەپی مۆبایلی فێرگا — گەڕان بەدوای باشترین مامۆستایان، قوتابخانەکان و سەنتەرەکانی فێربوون لە کوردستان و عێراق.',
-      screens: [
-        { title: 'سەرەکی و گەڕان', caption: 'دۆزینەوەی باشترین مامۆستا و قوتابخانە و سەنتەرەکان' },
-        { title: 'نزیک لە خۆتەوە (📍)', caption: 'مامۆستایان و سەنتەرەکان بەپێی دووری لە شارەکەت' },
-        { title: 'لیستی مامۆستایان', caption: 'مامۆستایانی شارەزا بەپێی هەڵسەنگاندن و خولەکان' },
-        { title: 'کۆرسەکان و تاقیکردنەوە', caption: 'کۆرسی پایتۆن، زمان، پیانۆ و سەنتەری تاقیکردنەوەکان' },
-      ],
+      appName: 'فێرگە — فێرکردن و فێربوون',
+      badge: 'بازاڕگەی پەروەردەیی کوردستان',
+      subtitle: 'مامۆستا و کۆرسەکان لە نزیک خۆت بدۆزەوە',
+      subhead:
+        'فێرگە بازاڕگەی پەروەردەیی کوردستانە — باشترین مامۆستای تایبەت، قوتابخانە و ناوەندەکانی ڕاهێنان بدۆزەرەوە، بەراورد بکە و تۆمار بکە. زمان، پرۆگرامینگ، بازرگانی، هونەر، میوزیک و زۆر شتی تر فێربە — ئۆنلاین یان ڕووبەڕوو.',
+      free: 'بێبەرامبەر',
+      category: 'پەروەردە',
+      languages: 'کوردی · عەرەبی · ئینگلیزی',
     },
     store: {
       getItOn: 'بەدەستی بهێنە لە',
+      downloadOnThe: 'دایبگرە لە',
       googlePlay: 'Google Play',
-      downloadOnThe: 'داگرتن لە',
       appStore: 'App Store',
+      comingSoon: 'بەم زووانە',
     },
     categories: {
-      label: '٠١ — چی دەتوانیت فێرببیت',
-      title: 'یەک ئەپ. هەموو ئەو بابەتانەی گرنگن بۆت.',
-      desc: 'لە وانەکانی قوتابخانەوە تا شارەزایی پیشەیی و تەکنەلۆژیا، فێرگا ١٤ بواری خوێندن دەگرێتەوە — بوارێک هەڵبژێرە و دەستپێبکە، یان ئەوەی دەیزانیت فێری کەسانی تر بکە.',
+      label: '٠١ — بەپێی بابەت بگەڕێ',
+      title: 'لە بابەتەکانی قوتابخانەوە تا لێهاتوویی پیشەیی.',
+      desc:
+        '١٣ بواری خوێندن، لەلایەن مامۆستا و قوتابخانە و ناوەندەکانی ڕاهێنان لە کوردستان — ئۆنلاین یان ڕووبەڕوو.',
       items: {
+        'school-academic': 'قوتابخانە و ئەکادیمی',
         languages: 'زمانەکان',
-        school: 'وانەکانی قوتابخانە',
-        university: 'وانەکانی زانکۆ',
-        technology: 'تەکنەلۆژیا و ئایتی',
-        business: 'کاروبار و بازرگانی',
-        trades: 'پیشە و شارەزایی تەکنیکی',
-        arts: 'هونەر و دیزاین',
-        music: 'میوزیک و دەنگ',
-        fitness: 'وەرزش و تەندروستی',
-        career: 'گەشەپێدانی پیشەیی',
-        exam: 'ئامادەکاری بۆ تاقیکردنەوەکان',
-        life: 'شارەزاییەکانی ژیان',
-        religious: 'پەروەردەی ئایینی',
-        personal: 'گەشەپێدانی کەسی',
+        'technology-it': 'تەکنەلۆژیا و ئایتی',
+        professional: 'لێهاتوویی پیشەیی',
+        'business-finance': 'بازرگانی و دارای',
+        'health-wellness': 'تەندروستی و چاکسازی',
+        engineering: 'ئەندازیاری',
+        'arts-creativity': 'هونەر و داهێنان',
+        lifestyle: 'ژیان و خولیاکان',
+        'islamic-studies': 'خوێندنی ئیسلامی',
+        vocational: 'پیشەیی',
+        'creative-media': 'کاری داهێنەرانە و میدیا',
+        'legal-admin': 'یاسا، کارگێڕی و دارای',
       },
     },
     features: {
-      label: '٠٢ — بۆچی فێرگا',
-      title: 'فێرکردن و فێربوون، بە سادەیی.',
-      desc: 'فێرگا تامەزرۆیی دەگۆڕێت بۆ پێشکەوتن — و شارەزایی دەگۆڕێت بۆ دەرفەت.',
+      label: '٠٢ — چۆن کار دەکات',
+      title: 'بدۆزەرەوە، بەراورد بکە، پاشان تۆمار بکە.',
+      desc: 'هەموو ئەوەی پێویستتە بۆ دۆزینەوەی مامۆستای گونجاو — لە یەک ئەپدا.',
       items: [
         {
-          title: 'هەر بابەتێک، هەر ئاستێک',
-          body: '١٤ بواری خوێندن — لە زمان و بابەتەکانی قوتابخانەوە تا پیشە، پرۆگرامینگ، میوزیک و شارەزایی ژیان — هەمووی لە یەک شوێندا.',
+          title: 'مامۆستا، قوتابخانە و ناوەندەکان',
+          body: 'پڕۆفایلی ورد لەگەڵ وێنە، بابەت، ئەزموون، هەڵسەنگاندن و نرخی کاتژمێری — لەگەڵ کۆرسە دیارەکان.',
         },
         {
-          title: 'فێربە و فێر بکە',
-          body: 'وەک فێرخواز بەشدار بە بۆ پێشکەوتن، یان وەک مامۆستا شارەزاییت هاوبەش بکە و بگە بەو قوتابییانەی پێویستیان پێتە.',
+          title: 'ڕاستەوخۆ گفتوگۆ و تۆمارکردن',
+          body: 'نامە بنێرە بۆ مامۆستای گونجاو و وانەکان لە ناو ئەپەکە تۆمار بکە — ئۆنلاین یان ڕووبەڕوو.',
         },
         {
-          title: 'پێشکەوتنت ببەدوادا',
-          body: 'هەر هەنگاوێکی فێربوون تۆمار بکە، ببینە چەندە پێشکەوتوویت، و بە ئامانجی ڕوون هەمیشە بەردەوام بە.',
+          title: 'نرخ و بۆچوون بەراورد بکە',
+          body: 'بۆچوونی ڕاستەقینەی خوێندکاران بخوێنەرەوە، پاشان نرخ و هەڵسەنگاندن و بەردەستبوون بەراورد بکە.',
         },
         {
-          title: 'بۆ هەمووان دروستکراوە',
-          body: 'سادە و دۆستانە، و بە شێوازێک دروستکراوە کە هەرکەسێک — قوتابی، مامۆستا، یان دایک و باوک — لە چەند چرکەیەکدا بتوانێت دەستپێبکات.',
+          title: 'بۆ کوردستان دروستکراوە',
+          body: 'بە کوردی، عەرەبی و ئینگلیزی بەردەستە، لەگەڵ هاوبەشی باوەڕپێکراو لە هەولێر، سلێمانی، دهۆک و دەرەوە.',
         },
       ],
     },
     final: {
-      label: '٠٣ — داگرتن',
-      h1a: 'دەست بە فێربوون بکە',
-      h1b: 'هەر ئەمڕۆ.',
-      desc: 'داگرتن بە تەواوی بێبەرامبەرە. ئێستا لە Google Play و App Store بەردەستە. کۆدەکە سکان بکە بۆ داگرتنی خێرای فێرگا لەسەر مۆبایلەکەت.',
-      scan: 'سکان بکە بۆ داگرتن',
+      label: '٠٣ — ئەپەکە دابگرە',
+      h1a: 'دەستبکە بە فێربوون',
+      h1b: 'ئەمڕۆ.',
+      desc:
+        'دابگرتن بێبەرامبەرە. کامێرای مۆبایلەکەت بەرامبەر کۆدەکە بگرە — ئەو فرۆشگایە دەکرێتەوە کە گونجاوە لەگەڵ ئامێرەکەت.',
+      scan: 'بسکان بکە بۆ داگرتن',
+      scanHint: 'App Store یان Google Play دەکاتەوە',
+      available: 'ئێستا لە App Store بەردەستە.',
       publishedBy: 'بڵاوکراوەتەوە لەلایەن ferkar.co',
     },
     footer: {
-      tagline: 'فێرکردن و فێربوون. دروستکراوە و بڵاوکراوەتەوە لەلایەن ferkar.co — یەک پلاتفۆرم بۆ هەموو بابەتێک.',
+      tagline:
+        'فێرگە بازاڕگەی پەروەردەیی کوردستانە — مامۆستا، قوتابخانە، ناوەندی ڕاهێنان و کۆرسەکان لە یەک ئەپدا.',
       download: 'داگرتن',
       company: 'کۆمپانیا',
+      legal: 'یاسایی',
       about: 'دەربارە',
-      contact: 'پەیوەندی',
+      support: 'پشتگیری',
+      privacy: 'سیاسەتی تایبەتێتی',
+      dataDeletion: 'سڕینەوەی داتا',
       subjects: 'بابەتەکان',
       rights: 'هەموو مافەکان پارێزراون',
     },

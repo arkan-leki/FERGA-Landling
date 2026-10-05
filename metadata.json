@@ -1,6 +1,6 @@
 {
-  "name": "Ferga - دابەزاندنی ئەپی فێرگە",
-  "description": "سەکۆی زیرەکی فێربوون و خوێندن لە کوردستان و عێراق — دابەزاندنی ئەپی فێرگە بۆ ئەندرۆید و ئایفۆن و وێب",
+  "name": "Ferga — Teaching & Learning",
+  "description": "Ferga — Teaching & Learning: Kurdistan's education marketplace — find tutors, schools, training centers and courses near you.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

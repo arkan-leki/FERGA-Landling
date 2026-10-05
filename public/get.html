@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Ferga — Teaching &amp; Learning</title>
+    <meta name="description" content="Get Ferga — Teaching & Learning, Kurdistan's education marketplace. Download for iOS or Android." />
+    <meta name="theme-color" content="#FF8C19" />
+    <link rel="icon" type="image/png" href="/ferga-icon.png" />
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --orange: #ff8c19;
+        --ink: #1d2630;
+        --font: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+        --mono: "JetBrains Mono", ui-monospace, monospace;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        font-family: var(--font);
+        color: var(--ink);
+        background: linear-gradient(180deg, #fff6ec 0%, #ffffff 55%, #ffffff 100%);
+        overflow-x: hidden;
+      }
+      html[dir="rtl"] body { font-family: "Vazirmatn", var(--font); }
+
+      /* reflected-colour atmosphere */
+      .blob {
+        position: fixed;
+        border-radius: 9999px;
+        filter: blur(64px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .blob-1 { top: -90px; left: -80px; width: 300px; height: 300px; background: rgba(255, 140, 25, 0.26); }
+      .blob-2 { top: -70px; right: -90px; width: 280px; height: 280px; background: rgba(255, 178, 44, 0.22); }
+      .blob-3 { bottom: -110px; left: 28%; width: 260px; height: 260px; background: rgba(111, 168, 220, 0.14); }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 420px;
+        padding: 28px 24px 24px;
+        border-radius: 30px;
+        text-align: center;
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.5));
+        backdrop-filter: blur(22px) saturate(180%);
+        -webkit-backdrop-filter: blur(22px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.95),
+          0 24px 60px -28px rgba(29, 38, 48, 0.4);
+      }
+
+      .icon-wrap { position: relative; display: inline-block; margin-bottom: 16px; }
+      .halo {
+        position: absolute;
+        inset: -14%;
+        border-radius: 9999px;
+        filter: blur(30px);
+        opacity: 0.6;
+        background: conic-gradient(from 140deg, #ffb22c, #ff8c19, #ff6b35, #ffd454, #6fa8dc, #ffb22c);
+        animation: drift 20s ease-in-out infinite;
+      }
+      @keyframes drift {
+        0%, 100% { transform: rotate(0) scale(1); }
+        50% { transform: rotate(180deg) scale(1.08); }
+      }
+      .icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 104px;
+        height: 104px;
+        padding: 10px;
+        border-radius: 22%;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 18px 44px -18px rgba(29, 38, 48, 0.45);
+      }
+      .icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(29, 38, 48, 0.45);
+      }
+      h1 {
+        margin: 6px 0 0;
+        font-size: 32px;
+        line-height: 1.1;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .sub {
+        margin: 8px 0 0;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--orange);
+      }
+      .detected {
+        margin: 14px 0 0;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(29, 38, 48, 0.42);
+      }
+
+      .actions { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+      a.btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        border: 1px solid transparent;
+      }
+      a.btn[hidden] { display: none; }
+      a.btn:hover { transform: translateY(-2px); }
+      a.primary {
+        background: #1a1a1a;
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 16px 40px -18px rgba(255, 140, 25, 0.55);
+      }
+      a.primary:hover { background: #2d2d2d; }
+      a.ghost {
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--ink);
+        border-color: rgba(29, 38, 48, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      a.ghost:hover { background: #fff; }
+      a.soon {
+        background: rgba(255, 255, 255, 0.5);
+        color: rgba(29, 38, 48, 0.45);
+        border-color: rgba(29, 38, 48, 0.08);
+        border-style: dashed;
+        cursor: default;
+      }
+      a.soon:hover { transform: none; }
+      .btn .txt { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+      .btn .cap {
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+      .btn .name { font-size: 16px; font-weight: 700; }
+      .badge-soon {
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 3px 7px;
+        border-radius: 999px;
+        background: rgba(255, 140, 25, 0.15);
+        color: #b35c00;
+      }
+      .badge-soon[hidden] { display: none; }
+
+      .note {
+        margin-top: 18px;
+        font-size: 12px;
+        line-height: 1.5;
+        color: rgba(29, 38, 48, 0.5);
+      }
+      .note a { color: var(--orange); text-decoration: none; font-weight: 600; }
+      .note a:hover { text-decoration: underline; }
+      .brand {
+        margin-top: 16px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(29, 38, 48, 0.35);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .halo { animation: none; }
+        a.btn { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <main class="card">
+      <div class="icon-wrap">
+        <div class="halo"></div>
+        <div class="icon">
+          <img src="/ferga-logo.jpg" alt="Ferga" onerror="this.src='/ferga-icon.png'" />
+        </div>
+      </div>
+
+      <div class="eyebrow" id="eyebrow">Kurdistan's education marketplace</div>
+      <h1 id="appName">Ferga — Teaching &amp; Learning</h1>
+      <p class="sub" id="subtitle">Find tutors and courses near you</p>
+      <div class="detected" id="detected">Detecting your device…</div>
+
+      <!-- Order is decided by the script below; without JS this is the fallback. -->
+      <div class="actions" id="actions">
+        <a class="btn primary" id="btnStore" href="https://apps.apple.com/us/app/ferga-teaching-learning/id6808258219" rel="noopener">
+          <span class="txt">
+            <span class="cap" id="capStore">Download on the</span>
+            <span class="name">App Store</span>
+          </span>
+        </a>
+
+        <a class="btn soon" id="btnPlay" href="https://play.google.com/store/apps/details?id=com.ferga.mobile" rel="noopener">
+          <span class="txt">
+            <span class="cap" id="capPlay">Get it on</span>
+            <span class="name">Google Play</span>
+          </span>
+          <span class="badge-soon" id="badgePlay">Coming soon</span>
+        </a>
+      </div>
+
+      <p class="note">
+        <span id="noteHelp">Trouble opening the app?</span>
+        <a href="https://ferga.expo.app/support" id="linkSupport">Get help</a> ·
+        <a href="https://ferga.expo.app/privacy-policy" id="linkPrivacy">Privacy</a>
+      </p>
+      <div class="brand">ferkar.co</div>
+    </main>
+
+    <script>
+      /* ------------------------------------------------------------------
+         The page the landing-page QR code opens.
+
+         It sniffs the device and puts the right store first:
+           · iPhone / iPad → App Store (live)
+           · Android       → Google Play
+           · desktop       → App Store first, Google Play below
+
+         ⚠️ PLAY_PUBLISHED — flip to true the day the Android build leaves
+         Google Play internal testing. Until then Play is shown as
+         "coming soon" instead of linking to a 404.
+         ------------------------------------------------------------------ */
+      var PLAY_PUBLISHED = false;
+
+      var LINKS = {
+        store: 'https://apps.apple.com/us/app/ferga-teaching-learning/id6808258219',
+        play: 'https://play.google.com/store/apps/details?id=com.ferga.mobile',
+        support: 'https://ferga.expo.app/support',
+        privacy: 'https://ferga.expo.app/privacy-policy'
+      };
+
+      /* App name as it appears on the stores, per language. */
+      var COPY = {
+        en: {
+          appName: 'Ferga — Teaching & Learning',
+          eyebrow: "Kurdistan's education marketplace",
+          subtitle: 'Find tutors and courses near you',
+          getOn: 'Download on the', play: 'Get it on', soon: 'Coming soon',
+          iosDetected: 'iPhone / iPad detected', androidDetected: 'Android detected',
+          androidSoon: 'Android detected · Google Play coming soon',
+          desktopDetected: 'Choose your store below',
+          opening: 'Opening the App Store…',
+          help: 'Trouble opening the app?', helpLink: 'Get help', privacy: 'Privacy'
+        },
+        ar: {
+          appName: 'منصة — التعليم والتدريس',
+          eyebrow: 'سوق التعليم في كردستان',
+          subtitle: 'اعثر على معلّمين ودورات قريبة منك',
+          getOn: 'حمّله من', play: 'احصل عليه من', soon: 'قريبًا',
+          iosDetected: 'تم التعرف على iPhone / iPad', androidDetected: 'تم التعرف على Android',
+          androidSoon: 'تم التعرف على Android · Google Play قريبًا',
+          desktopDetected: 'اختر المتجر أدناه',
+          opening: 'جارٍ فتح App Store…',
+          help: 'تواجه مشكلة في فتح التطبيق؟', helpLink: 'الدعم', privacy: 'الخصوصية'
+        },
+        ckb: {
+          appName: 'فێرگە — فێرکردن و فێربوون',
+          eyebrow: 'بازاڕگەی پەروەردەیی کوردستان',
+          subtitle: 'مامۆستا و کۆرسەکان لە نزیک خۆت بدۆزەوە',
+          getOn: 'دایبگرە لە', play: 'بەدەستی بهێنە لە', soon: 'بەم زووانە',
+          iosDetected: 'iPhone / iPad ناسراوە', androidDetected: 'Android ناسراوە',
+          androidSoon: 'Android ناسراوە · Google Play بەم زووانە',
+          desktopDetected: 'فرۆشگاکە لە خوارەوە هەڵبژێرە',
+          opening: 'App Store دەکرێتەوە…',
+          help: 'کێشەت هەیە لە کردنەوەی ئەپەکە؟', helpLink: 'پشتگیری', privacy: 'تایبەتێتی'
+        }
+      };
+
+      /* ---- language: ?lang= first, then the browser ---- */
+      var params = new URLSearchParams(window.location.search);
+      var lang = (params.get('lang') || '').toLowerCase();
+      if (['ar', 'ckb', 'ku'].indexOf(lang) === -1) {
+        var nav = (navigator.language || 'en').toLowerCase();
+        lang = nav.indexOf('ckb') === 0 || nav.indexOf('ku') === 0 ? 'ckb'
+             : nav.indexOf('ar') === 0 ? 'ar' : 'en';
+      }
+      var t = COPY[lang] || COPY.en;
+      if (lang === 'ar' || lang === 'ckb') {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = 'rtl';
+      }
+
+      document.getElementById('appName').textContent = t.appName;
+      document.getElementById('eyebrow').textContent = t.eyebrow;
+      document.getElementById('subtitle').textContent = t.subtitle;
+      document.getElementById('capStore').textContent = t.getOn;
+      document.getElementById('capPlay').textContent = t.play;
+      document.getElementById('badgePlay').textContent = t.soon;
+      document.getElementById('noteHelp').textContent = t.help + ' ';
+      document.getElementById('linkSupport').textContent = t.helpLink;
+      document.getElementById('linkPrivacy').textContent = t.privacy;
+
+      /* ---- device detection (?to= overrides for testing) ---- */
+      var ua = navigator.userAgent || '';
+      var isIpad = /iPad/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+      var isIos = /iPhone|iPod/.test(ua) || isIpad;
+      var isAndroid = /Android/.test(ua);
+      var forced = (params.get('to') || '').toLowerCase();
+      var target = forced === 'ios' || forced === 'android' || forced === 'desktop'
+        ? forced
+        : isIos ? 'ios' : isAndroid ? 'android' : 'desktop';
+
+      var btn = {
+        store: document.getElementById('btnStore'),
+        play: document.getElementById('btnPlay')
+      };
+      btn.store.setAttribute('href', LINKS.store);
+      btn.play.setAttribute('href', LINKS.play);
+
+      /* ---- order the stack for this device ---- */
+      var order = target === 'android' ? ['play', 'store'] : ['store', 'play'];
+      var detected = target === 'android'
+        ? (PLAY_PUBLISHED ? t.androidDetected : t.androidSoon)
+        : target === 'ios' ? t.iosDetected : t.desktopDetected;
+      var primary = target === 'android'
+        ? (PLAY_PUBLISHED ? 'play' : null)
+        : 'store';
+
+      ['store', 'play'].forEach(function (key) {
+        var el = btn[key];
+        var isSoon = key === 'play' && !PLAY_PUBLISHED;
+        el.style.order = order.indexOf(key);
+        el.className = 'btn ' + (key === primary && !isSoon ? 'primary' : isSoon ? 'soon' : 'ghost');
+      });
+      document.getElementById('badgePlay').hidden = PLAY_PUBLISHED;
+      document.getElementById('detected').textContent = detected;
+
+      /* Not-yet-published Play is not a link — just a status. */
+      if (!PLAY_PUBLISHED) {
+        btn.play.addEventListener('click', function (e) { e.preventDefault(); });
+      }
+
+      /* On phones, hand straight off to the store (?stay=1 keeps the page). */
+      if (primary && (isIos || isAndroid) && !params.get('stay')) {
+        document.getElementById('detected').textContent = t.opening;
+        setTimeout(function () { window.location.href = btn[primary].getAttribute('href'); }, 900);
+      }
+    </script>
+  </body>
+</html>

@@ -2,7 +2,6 @@ import React from 'react';
 import { LanguageProvider } from './context/LanguageContext';
 import { TopNav } from './components/TopNav';
 import { HeroSection } from './components/HeroSection';
-import { AppScreenshotsSection } from './components/AppScreenshotsSection';
 import { CategoriesSection } from './components/CategoriesSection';
 import { FeaturesSection } from './components/FeaturesSection';
 import { InstallSection } from './components/InstallSection';
@@ -12,16 +11,13 @@ import { FloatingDock } from './components/FloatingDock';
 function FergaLandingPage() {
   return (
     <div className="min-h-screen bg-white text-[#1D2630]">
-      {/* Sticky Top Navbar matching poshyashop.com */}
+      {/* Sticky Top Navbar */}
       <TopNav />
 
-      {/* Hero Section matching poshyashop.com */}
+      {/* Hero — App Store style app-icon listing */}
       <HeroSection logoUrl="/ferga-logo.jpg" />
 
-      {/* Screenshots Carousel matching poshyashop.com */}
-      <AppScreenshotsSection />
-
-      {/* 14 Categories Section */}
+      {/* Subject cloud (small tags, not a grid) */}
       <CategoriesSection />
 
       {/* 4 Feature Cards Section */}
