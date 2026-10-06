@@ -14,17 +14,19 @@ function FergaLandingPage() {
       {/* Sticky Top Navbar */}
       <TopNav />
 
-      {/* Hero — App Store style app-icon listing */}
-      <HeroSection logoUrl="/ferga-logo.jpg" />
+      <main>
+        {/* Hero — App Store style app-icon listing */}
+        <HeroSection logoUrl="/ferga-logo.jpg" />
 
-      {/* Subject cloud (small tags, not a grid) */}
-      <CategoriesSection />
+        {/* Subject cloud (small tags, not a grid) */}
+        <CategoriesSection />
 
-      {/* 4 Feature Cards Section */}
-      <FeaturesSection />
+        {/* 4 Feature Cards Section */}
+        <FeaturesSection />
 
-      {/* Final QR & Download Section */}
-      <InstallSection />
+        {/* Final QR & Download Section */}
+        <InstallSection />
+      </main>
 
       {/* Footer */}
       <Footer />

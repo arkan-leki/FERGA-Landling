@@ -2,30 +2,114 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/ferga-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary -->
     <title>Ferga — Teaching &amp; Learning | Find tutors and courses near you</title>
-    <meta name="description" content="Ferga — Teaching &amp; Learning: the education marketplace for Kurdistan. Discover, compare and book the best private tutors, schools and training centers. Free on the App Store." />
-    <meta property="og:title" content="Ferga — Teaching &amp; Learning" />
-    <meta property="og:description" content="Kurdistan's education marketplace. Browse tutors, schools and training centers, compare pricing and reviews, and book lessons online or in person." />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ferkar.co" />
-    <meta property="og:image" content="/ferga-logo.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/ferga-logo.jpg" />
+    <meta
+      name="description"
+      content="Ferga — Teaching &amp; Learning is the education marketplace for Kurdistan. Discover, compare and book the best private tutors, schools and training centers — online or in person. Free on the App Store."
+    />
+    <link rel="canonical" href="%SITE_URL%/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="author" content="ferkar.co" />
     <meta name="theme-color" content="#FF8C19" />
-    <!-- Native iOS smart banner for the live App Store listing -->
+    <meta name="color-scheme" content="light" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/ferga-icon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph (absolute URLs — relative paths are ignored by crawlers) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ferga — Teaching &amp; Learning" />
+    <meta property="og:title" content="Ferga — Teaching &amp; Learning" />
+    <meta
+      property="og:description"
+      content="Kurdistan's education marketplace. Browse tutors, schools and training centers, compare pricing and reviews, and book lessons online or in person."
+    />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:image" content="%SITE_URL%/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ferga — Teaching &amp; Learning app icon" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ferga — Teaching &amp; Learning" />
+    <meta
+      name="twitter:description"
+      content="Kurdistan's education marketplace. Browse tutors, schools and training centers, compare pricing and reviews, and book lessons online or in person."
+    />
+    <meta name="twitter:image" content="%SITE_URL%/og-image.png" />
+    <meta name="twitter:image:alt" content="Ferga — Teaching &amp; Learning app icon" />
+
+    <!-- iOS: native smart banner for the live App Store listing -->
     <meta name="apple-itunes-app" content="app-id=6808258219" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="Ferga" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Readex+Pro:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Structured data: the app listing + the site itself.
+         No aggregateRating: the store listing has no ratings yet. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            "@id": "%SITE_URL%/#app",
+            "name": "Ferga — Teaching & Learning",
+            "alternateName": ["Ferga", "منصة — التعليم والتدريس", "فێرگە — فێرکردن و فێربوون"],
+            "applicationCategory": "EducationalApplication",
+            "applicationSubCategory": "Education marketplace",
+            "operatingSystem": "iOS, Android",
+            "softwareVersion": "1.0.1",
+            "inLanguage": ["en", "ar", "ckb"],
+            "contentRating": "13+",
+            "isAccessibleForFree": true,
+            "description": "Ferga is the education marketplace for Kurdistan — discover, compare and book the best private tutors, schools and training centers. Learn languages, programming, business, arts, music and more, online or in person.",
+            "url": "%SITE_URL%/",
+            "image": "%SITE_URL%/og-image.png",
+            "installUrl": [
+              "https://apps.apple.com/us/app/ferga-teaching-learning/id6808258219",
+              "https://play.google.com/store/apps/details?id=com.ferga.mobile"
+            ],
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "Iraq"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "ferkar.co"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "%SITE_URL%/#website",
+            "name": "Ferga — Teaching & Learning",
+            "url": "%SITE_URL%/",
+            "inLanguage": ["en", "ar", "ckb"],
+            "about": { "@id": "%SITE_URL%/#app" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body class="bg-white text-[#1D2630] antialiased selection:bg-[#FF8C19] selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

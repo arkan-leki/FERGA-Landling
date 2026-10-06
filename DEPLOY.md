@@ -75,13 +75,69 @@ for the Git-connected deploy.
 ## After the first deploy
 
 1. **Custom domain** — Workers → your Worker → *Settings → Domains & Routes → Add
-   custom domain* (e.g. `ferga.ferkar.co`). The `workers.dev` URL works immediately
-   without this.
+   custom domain*. Prefer this over a Route:
+   - Cloudflare wildcards (`*.ferga.app/*`) match **subdomains only, not the apex**, so
+     that pattern would *miss* `ferga.app` and hijack every other subdomain.
+   - If you do use Routes, use the explicit pair: `ferga.app/*` and `www.ferga.app/*`.
+   - Custom domains create the DNS record + certificate automatically; routes need a
+     proxied DNS record to already exist (`ferga.app` currently has none).
 2. **The QR code needs no changes.** It encodes `window.location.origin` at render
    time, so it automatically points at whatever domain the page is served from —
    including the workers.dev URL and any custom domain added later.
 3. **Sanity-check on the live URL:** scan the QR with a phone, and confirm
    `https://<domain>/get.html` renders the quick page in the right language.
+
+---
+
+## SEO
+
+`index.html` carries the full head: title, description, canonical, robots, Open Graph
+(`og:image` 1200×630 + absolute URL + alt + locale), Twitter card, the Apple smart
+banner, and JSON-LD (`SoftwareApplication` + `WebSite`). **`aggregateRating` is
+deliberately absent** — the App Store listing has no ratings yet, so there is nothing
+honest to declare.
+
+All absolute URLs come from one value, `SITE_URL` in `vite.config.ts` (default
+`https://ferga.app`). The `ferga-seo` plugin replaces the `%SITE_URL%` placeholder in
+`index.html` and emits `robots.txt` + `sitemap.xml` (served in dev too).
+
+**Deploying to a different domain?** Rebuild with the env var — no file edits:
+
+```bash
+SITE_URL=https://ferga.app npm run build                       # default
+SITE_URL=https://ferga-landing.<sub>.workers.dev npm run build # workers.dev
+```
+
+> On Cloudflare Workers Builds, set `SITE_URL` as a build environment variable.
+
+`robots.txt` disallows `/get.html` (the internal QR page) and points at the sitemap. The
+sitemap lists only the homepage, since `/get.html` is `noindex`.
+
+### The OG image
+
+`public/og-image.png` (1200×630) is rendered from `scripts/og-template.html` — edit the
+template, then re-render so the card matches the live page:
+
+```bash
+chromium --headless --disable-gpu --no-sandbox --hide-scrollbars \
+  --window-size=1200,630 --screenshot=public/og-image.png \
+  "file://$PWD/scripts/og-template.html"
+```
+
+### Verifying after a deploy
+
+```bash
+curl -s https://ferga.app/robots.txt
+curl -s https://ferga.app/sitemap.xml
+curl -s https://ferga.app/ | grep -E 'canonical|og:image'
+```
+
+Then re-scrape the card with the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/),
+[LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) or the
+[X Card Validator](https://cards-dev.twitter.com/validator). WhatsApp/Facebook cache
+previews aggressively — the debugger is how you force a refresh after changing the OG image.
+
+---
 
 ## ⚠️ Google Play is still gated
 
