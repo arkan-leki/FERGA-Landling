@@ -3,13 +3,12 @@
  *
  * Verified 2026-10-06:
  *  · App Store listing is LIVE  (id 6808258219, "FERGA – Teaching & Learning", free, 13+)
- *  · Google Play returns 404    — the Android build is still on Play **internal testing**
- *    (release-report.md: "version code 22 (1.0.1) released to internal testing")
+ *  · Google Play is LIVE        (com.ferga.mobile — accepted, returns 200)
  *
- * ⚠️ Flip PLAY_PUBLISHED to true the day the Android track goes to production.
- * Every "Coming soon" badge, the Play button and the /get.html quick page read this flag.
+ * PLAY_PUBLISHED gates the "Coming soon" badges and the quick page's Android path.
+ * It is true now, so every Play button and link goes straight to the store.
  */
-export const PLAY_PUBLISHED = false;
+export const PLAY_PUBLISHED = true;
 
 export const LINKS = {
   appStore: 'https://apps.apple.com/us/app/ferga-teaching-learning/id6808258219',

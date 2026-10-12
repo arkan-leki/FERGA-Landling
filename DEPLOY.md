@@ -139,13 +139,20 @@ previews aggressively — the debugger is how you force a refresh after changing
 
 ---
 
-## ⚠️ Google Play is still gated
+## Google Play + App Store status
 
-`PLAY_PUBLISHED` is `false` in **two** places and they must be changed together:
+Both store listings are **live** as of 2026-10-06, so `PLAY_PUBLISHED` is `true`:
 
-- `src/data/links.ts` — controls every button/link on the landing page
-- `public/get.html` — controls the quick page
+| Store | Status | Link |
+| --- | --- | --- |
+| App Store | live, free, 13+ | `apps.apple.com/us/app/ferga-teaching-learning/id6808258219` |
+| Google Play | live (`com.ferga.mobile`) | `play.google.com/store/apps/details?id=com.ferga.mobile` |
 
-Until then Google Play shows as "Coming soon" (the live listing returns **404**; the
-Android build is still on Play internal testing). Flip both to `true` the day the
-Android track goes to production, commit, and Cloudflare redeploys automatically.
+`PLAY_PUBLISHED` must stay in sync in **two** places — it is the only switch:
+
+- `src/data/links.ts` → `playHref()` and the "Coming soon" badges on the landing page
+- `public/get.html` → which store the QR quick page opens first on Android
+
+While it was `false`, Play was shown as "Coming soon" (an unlinked, dashed button)
+because the listing returned 404 during internal testing. If Play ever gets
+unpublished, flip both back to `false` and rebuild.

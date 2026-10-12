@@ -259,11 +259,10 @@
            · Android       → Google Play
            · desktop       → App Store first, Google Play below
 
-         ⚠️ PLAY_PUBLISHED — flip to true the day the Android build leaves
-         Google Play internal testing. Until then Play is shown as
-         "coming soon" instead of linking to a 404.
+         ⚠️ PLAY_PUBLISHED — mirrors src/data/links.ts. Google Play is live,
+         so Android goes straight to the store.
          ------------------------------------------------------------------ */
-      var PLAY_PUBLISHED = false;
+      var PLAY_PUBLISHED = true;
 
       var LINKS = {
         store: 'https://apps.apple.com/us/app/ferga-teaching-learning/id6808258219',
