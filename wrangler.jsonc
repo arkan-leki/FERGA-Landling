@@ -2,7 +2,11 @@
   // Cloudflare Workers deployment — static-assets only, no Worker script.
   // `npm run build` produces ./dist, and `npx wrangler deploy` uploads it.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ferga-landing",
+  // Must match the Worker name in the Cloudflare dashboard / Workers Builds
+  // project. Cloudflare pre-filled "ferga-landling" (from the repo name); if this
+  // disagrees, CI overrides it and warns on every deploy, and Builds tries to open
+  // a PR "fixing" the config. Rename the Worker in the dashboard to change it.
+  "name": "ferga-landling",
   "compatibility_date": "2026-09-01",
   "assets": {
     // Vite build output

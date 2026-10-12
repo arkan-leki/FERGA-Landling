@@ -12,7 +12,7 @@ You are already on the **Workers** path (not Pages). Use exactly these values:
 
 | Field | Value |
 | --- | --- |
-| Project name | `ferga-landing` — ⚠️ the box pre-filled `ferga-landling` (a typo from the repo name). Change it to `ferga-landing` so it matches `name` in `wrangler.jsonc`; the name in the config wins anyway, and a mismatch just creates confusion. |
+| Project name | `ferga-landling` — this is what Cloudflare pre-filled (from the repo name) and it is now what `wrangler.jsonc` declares, so the two agree. **Do not "fix" one without the other**: if they disagree, CI overrides the config and warns on every deploy, and Builds tries to open a PR to resolve it. To use the correctly-spelled `ferga-landing`, rename the Worker in the dashboard first, then change `name` in `wrangler.jsonc`. |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
 | Enable Preview builds | **On** (optional) — gives every branch its own preview URL |
@@ -29,7 +29,7 @@ The repo already contains everything the build needs: `wrangler.jsonc`, a commit
 
 ```jsonc
 {
-  "name": "ferga-landing",
+  "name": "ferga-landling",
   "compatibility_date": "2026-09-01",
   "assets": {
     "directory": "./dist",
@@ -105,7 +105,7 @@ All absolute URLs come from one value, `SITE_URL` in `vite.config.ts` (default
 
 ```bash
 SITE_URL=https://ferga.app npm run build                       # default
-SITE_URL=https://ferga-landing.<sub>.workers.dev npm run build # workers.dev
+SITE_URL=https://ferga-landling.<sub>.workers.dev npm run build # workers.dev
 ```
 
 > On Cloudflare Workers Builds, set `SITE_URL` as a build environment variable.

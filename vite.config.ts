@@ -1,6 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 import { defineConfig, type Plugin, type UserConfig } from 'vite';
 
 /**
@@ -73,11 +72,6 @@ export default defineConfig((): UserConfig => {
     // that the QR code points at, serving the landing page instead of it.
     appType: 'mpa',
     plugins: [react(), tailwindcss(), seoPlugin()],
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
-    },
     server: {
       hmr: process.env.DISABLE_HMR !== 'true',
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
